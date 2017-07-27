@@ -239,10 +239,9 @@ class S3Boto3Storage(Storage):
         self._bucket = None
         self._connections = threading.local()
 
-        self.security_token = None
+        self.security_token = self._get_security_token()
         if not self.access_key and not self.secret_key:
             self.access_key, self.secret_key = self._get_access_keys()
-            self.security_token = self._get_security_token()
 
         if not self.config:
             self.config = Config(s3={'addressing_style': self.addressing_style},
