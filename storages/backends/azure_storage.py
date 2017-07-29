@@ -25,6 +25,9 @@ try:
 except ImportError:
     from azure.storage import BlobService
     from azure import WindowsAzureMissingResourceError as AzureMissingResourceHttpError
+except ImportError:
+    from azure.storage.blob import BlockBlobService
+    from azure.common import AzureMissingResourceHttpError
 
 
 def clean_name(name):
